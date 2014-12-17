@@ -1,0 +1,18 @@
+\documentclass[11pt,finnish]{standalone}
+
+% Packages
+\usepackage{DigitalCircuits}
+
+\begin{document}
+
+\begin{tikzpicture}[->, >=stealth', shorten >=1pt, auto, node distance=3.5cm,
+                    thick, main node/.style={circle, draw, font=\sffamily\Large\bfseries}]
+
+\node[main node] (XY) {XY};
+
+\path[every node/.style={font=\sffamily\small}, align=left]
+	+(0, 1.5) node[above] {Key:} 
+	(XY)	edge [bend left]  node {AB} +(1, 1);
+\end{tikzpicture}
+
+\end{document}

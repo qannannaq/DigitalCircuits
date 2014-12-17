@@ -1,0 +1,23 @@
+\documentclass[finnish]{standalone}
+
+% Packages
+\usepackage{DigitalCircuits}
+
+\begin{document}
+
+a)
+\begin{Karnaugh}
+	\contingut{0,1,0,0, 1,1,1,1, 0,1,0,0, 1,1,1,1}
+	\implicant{1}{9}{WildStrawberry}
+	\implicant{4}{14}{CadetBlue}
+\end{Karnaugh}
+
+b)
+\begin{Karnaugh}
+	\contingut{0,1,0,1, 0,0,0,1, 1,0,1,0, 1,0,1,0}
+	\implicant{1}{3}{RoyalPurple}
+	\implicant[1.5pt]{3}{7}{Thistle}
+	\implicantcostats{12}{10}{NavyBlue}
+\end{Karnaugh}
+
+\end{document}
