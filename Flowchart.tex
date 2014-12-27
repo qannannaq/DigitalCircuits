@@ -4,9 +4,7 @@
 \usepackage{DigitalCircuits}
 
 \begin{document}
-
 \begin{tikzpicture}[node distance=2cm]
-
 \node (start) [startend] {Start};
 \node (in1) [io, below of=start] {Input};
 \node (pro1) [process, below of=in1] {Process 1};
@@ -24,8 +22,5 @@
 \draw [arrow] (pro2b) |- (pro1);
 \draw [arrow] (pro2a) -- (out1);
 \draw [arrow] (out1) -- (stop);
-
-
 \end{tikzpicture}
-
 \end{document}
