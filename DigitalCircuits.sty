@@ -1,7 +1,6 @@
 % Packages
 \usepackage{babel}
 \usepackage[utf8]{inputenc}
-%\usepackage[T1]{fontenc} % If you use the TeXstudio then comment this line
 \usepackage{times}
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage{tikz}
@@ -20,11 +19,11 @@
 %	Flowchart
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\tikzstyle{startend} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, draw=black]
-\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black]
-\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, text width=3cm, draw=black]
-\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black]
-\tikzstyle{arrow} = [thick,->,>=stealth]
+\tikzstyle{startend}=[rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+\tikzstyle{io}=[trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+\tikzstyle{process}=[rectangle, minimum width=3cm, minimum height=1cm, text centered, text width=3cm, draw=black]
+\tikzstyle{decision}=[diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+\tikzstyle{arrow}=[thick,->,>=stealth]
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -176,20 +175,18 @@
 \tikzstyle{nor4(iiii)}=[nor gate IEC, draw, logic gate inputs=iiii]
 
 \tikzset{
-  -|-/.style={
-    to path={
-      (\tikztostart) -| ($(\tikztostart)!#1!(\tikztotarget)$) |- (\tikztotarget)
-      \tikztonodes
-    }
-  },
-  -|-/.default=0.5,
-  |-|/.style={
-    to path={
-      (\tikztostart) |- ($(\tikztostart)!#1!(\tikztotarget)$) -| (\tikztotarget)
-      \tikztonodes
-    }
-  },
-  |-|/.default=0.5,
+-|-/.style={
+	to path={
+		(\tikztostart) -| ($(\tikztostart)!#1!(\tikztotarget)$) |- (\tikztotarget)
+		\tikztonodes
+	}
+}, -|-/.default=0.5,
+|-|/.style={
+	to path={
+		(\tikztostart) |- ($(\tikztostart)!#1!(\tikztotarget)$) -| (\tikztotarget)
+		\tikztonodes
+	}
+}, |-|/.default=0.5,
 }
 
 
@@ -202,8 +199,8 @@
 %#2 - node
 %#3 - color
 \newcommand{\implicantsol}[3][0]{
-    \draw[rounded corners=3pt, color=#3, opacity=0.8, semithick] ($(#2.north west)+(135:#1)$) rectangle ($(#2.south east)+(-45:#1)$);
-    }
+\draw[rounded corners=3pt, color=#3, opacity=0.8, semithick] ($(#2.north west)+(135:#1)$) rectangle ($(#2.south east)+(-45:#1)$);
+}
 
 
 %internal group
@@ -212,8 +209,8 @@
 %#3 - bottom right node
 %#4 - color
 \newcommand{\implicant}[4][0]{
-    \draw[rounded corners=3pt, color=#4, opacity=0.8, semithick] ($(#2.north west)+(135:#1)$) rectangle ($(#3.south east)+(-45:#1)$);
-    }
+\draw[rounded corners=3pt, color=#4, opacity=0.8, semithick] ($(#2.north west)+(135:#1)$) rectangle ($(#3.south east)+(-45:#1)$);
+}
 
 %group lateral borders
 %#1 - Optional. Space between node and grouping line. Default=0
@@ -221,8 +218,8 @@
 %#3 - bottom right node
 %#4 - color
 \newcommand{\implicantcostats}[4][0]{
-    \draw[rounded corners=3pt, color=#4, opacity=0.8, semithick] ($(rf.east |- #2.north)+(90:#1)$)-| ($(#2.east)+(0:#1)$) |- ($(rf.east |- #3.south)+(-90:#1)$);
-    \draw[rounded corners=3pt, color=#4, opacity=0.8, semithick] ($(cf.west |- #2.north)+(90:#1)$) -| ($(#3.west)+(180:#1)$) |- ($(cf.west |- #3.south)+(-90:#1)$);
+\draw[rounded corners=3pt, color=#4, opacity=0.8, semithick] ($(rf.east |- #2.north)+(90:#1)$)-| ($(#2.east)+(0:#1)$) |- ($(rf.east |- #3.south)+(-90:#1)$);
+\draw[rounded corners=3pt, color=#4, opacity=0.8, semithick] ($(cf.west |- #2.north)+(90:#1)$) -| ($(#3.west)+(180:#1)$) |- ($(cf.west |- #3.south)+(-90:#1)$);
 }
 
 %group top-bottom borders
@@ -231,18 +228,18 @@
 %#3 - bottom right node
 %#4 - color
 \newcommand{\implicantdaltbaix}[4][0]{
-    \draw[rounded corners=3pt, color=#4, opacity=0.8, semithick] ($(cf.south -| #2.west)+(180:#1)$) |- ($(#2.south)+(-90:#1)$) -| ($(cf.south -| #3.east)+(0:#1)$);
-    \draw[rounded corners=3pt, color=#4, opacity=0.8, semithick] ($(rf.north -| #2.west)+(180:#1)$) |- ($(#3.north)+(90:#1)$) -| ($(rf.north -| #3.east)+(0:#1)$);
+\draw[rounded corners=3pt, color=#4, opacity=0.8, semithick] ($(cf.south -| #2.west)+(180:#1)$) |- ($(#2.south)+(-90:#1)$) -| ($(cf.south -| #3.east)+(0:#1)$);
+\draw[rounded corners=3pt, color=#4, opacity=0.8, semithick] ($(rf.north -| #2.west)+(180:#1)$) |- ($(#3.north)+(90:#1)$) -| ($(rf.north -| #3.east)+(0:#1)$);
 }
 
 %group corners
 %#1 - Optional. Space between node and grouping line. Default=0
 %#2 - color
 \newcommand{\implicantcantons}[2][0]{
-    \draw[rounded corners=3pt, color=#2, opacity=0.8, semithick] ($(rf.east |- 0.south)+(-90:#1)$) -| ($(0.east |- cf.south)+(0:#1)$);
-    \draw[rounded corners=3pt, color=#2, opacity=0.8, semithick] ($(rf.east |- 8.north)+(90:#1)$) -| ($(8.east |- rf.north)+(0:#1)$);
-    \draw[rounded corners=3pt, color=#2, opacity=0.8, semithick] ($(cf.west |- 2.south)+(-90:#1)$) -| ($(2.west |- cf.south)+(180:#1)$);
-    \draw[rounded corners=3pt, color=#2, opacity=0.8, semithick] ($(cf.west |- 10.north)+(90:#1)$) -| ($(10.west |- rf.north)+(180:#1)$);
+\draw[rounded corners=3pt, color=#2, opacity=0.8, semithick] ($(rf.east |- 0.south)+(-90:#1)$) -| ($(0.east |- cf.south)+(0:#1)$);
+\draw[rounded corners=3pt, color=#2, opacity=0.8, semithick] ($(rf.east |- 8.north)+(90:#1)$) -| ($(8.east |- rf.north)+(0:#1)$);
+\draw[rounded corners=3pt, color=#2, opacity=0.8, semithick] ($(cf.west |- 2.south)+(-90:#1)$) -| ($(2.west |- cf.south)+(180:#1)$);
+\draw[rounded corners=3pt, color=#2, opacity=0.8, semithick] ($(cf.west |- 10.north)+(90:#1)$) -| ($(10.west |- rf.north)+(180:#1)$);
 }
 
 %Empty Karnaugh map 4x4
@@ -321,7 +318,7 @@
 %Defines 8 or 16 values (0,1,X)
 \newcommand{\contingut}[1]{
 \foreach \x [count=\xi from 0]  in {#1}
-     \path (\xi) node {\x};
+	\path (\xi) node {\x};
 }
 
 %Places 1 in listed positions
@@ -332,14 +329,14 @@
 
 %Places 0 in listed positions
 \newcommand{\maxterms}[1]{
-    \foreach \x in {#1}
-        \path (\x) node {0};
+\foreach \x in {#1}
+	\path (\x) node {0};
 }
 
 %Places X in listed positions
 \newcommand{\indeterminats}[1]{
-    \foreach \x in {#1}
-        \path (\x) node {X};
+\foreach \x in {#1}
+	\path (\x) node {X};
 }
 
 
@@ -443,5 +440,5 @@ A \& B \& C \& D \& F  \\
 
 \newcommand{\truth}[1]{
 \foreach \x [count=\xi from 0]  in {#1}
-     \path (\xi) node {\x};
+	\path (\xi) node {\x};
 }
