@@ -1,4 +1,4 @@
-DigitalCircuits
+DigitalCircuits-LaTeX
 ===============
 
 Digital Circuits LaTeX
