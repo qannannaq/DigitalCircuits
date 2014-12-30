@@ -1,37 +1,41 @@
-\documentclass[finnish]{standalone}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Logic gates
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,english]{standalone}
 
 % Packages
 \usepackage{DigitalCircuits}
 
 \begin{document}
-\begin{tikzpicture}[label distance=2mm, every node/.style={font=\tiny}]
+\begin{tikzpicture}[label distance=2mm, every node/.style={font=\footnotesize}]
 
 \node (A) at (0,0) {A};
 \node (B) at (0.5,0) {B};
 \node (C) at (1,0) {C};
 \node (D) at (1.5,0) {D};
 
-\node[and3(nin)] at (2.5,-0.5) (And1) {};
-\node[and3(nnn)] at ($(And1)+(0,-1.5)$) (And2) {};
-\node[or3(inn)] at ($(And2)+(1.5,-1)$) (Ori1) {};
-\node[nand3(inn)] at ($(And1)+(1.5,-0.5)$) (Nandi1) {};
-\node[or3(nnn)] at ($(Nandi1)+(1.5,-0.5)$)  (Or1) {};
-\node[nand3(nin)] at ($(Or1)+(1.5,-0.5)$)  (Nand1) {};
+\node[and2(ni)] at (2.5,-0.5) (And1) {};
+\node[and2(nn)] at ($(And1)+(0,-1.5)$) (And2) {};
+\node[or2(in)] at ($(And2)+(1.5,-1)$) (Ori1) {};
+\node[nand2(in)] at ($(And1)+(1.5,-0.5)$) (Nand1) {};
+\node[or2(nn)] at ($(Nand1)+(1.5,-0.5)$)  (Or1) {};
+\node[nand2(ni)] at ($(Or1)+(1.5,-0.5)$)  (Nand2) {};
 
 \draw (A) |- (And1.input 1);
 \draw (B) |- (And2.input 1);
 \draw (B |- And1.input 2) node[branch] {} -- (And1.input 2);
 \draw (C) |- (Ori1.input 1);
-\draw (C |- Nandi1.input 2) node[branch] {} -- (Nandi1.input 2);
+\draw (C |- Nand1.input 2) node[branch] {} -- (Nand1.input 2);
 \draw (C |- And2.input 2) node[branch] {} -- (And2.input 2);
 \draw (D) |- (Ori1.input 2);
 
-\draw (And1.output) to[-|-] (Nandi1.input 1);
-\draw (Nandi1.output) to[-|-] (Or1.input 1);
+\draw (And1.output) to[-|-] (Nand1.input 1);
+\draw (Nand1.output) to[-|-] (Or1.input 1);
 \draw (And2.output) to[-|-] (Or1.input 2);
-\draw (Or1.output) to[-|-] (Nand1.input 1);
-\draw (Ori1.output) to[-|-] (Nand1.input 2);
-\draw (Nand1.output) -- ([xshift=0.5cm]Nand1.output) node[right, font=\scriptsize] {F};
+\draw (Or1.output) to[-|-] (Nand2.input 1);
+\draw (Ori1.output) to[-|-] (Nand2.input 2);
+\draw (Nand2.output) -- ([xshift=0.5cm]Nand2.output) node[right] {F};
 
 \end{tikzpicture}
 \end{document} 

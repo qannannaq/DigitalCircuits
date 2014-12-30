@@ -1,8 +1,12 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Digital Circuits 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 % Packages
 \usepackage{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{times}
-\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[usenames, dvipsnames]{xcolor}
 \usepackage{tikz}
 \usetikzlibrary{
 	arrows,
@@ -23,19 +27,18 @@
 \tikzstyle{io}=[trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black]
 \tikzstyle{process}=[rectangle, minimum width=3cm, minimum height=1cm, text centered, text width=3cm, draw=black]
 \tikzstyle{decision}=[diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black]
-\tikzstyle{arrow}=[thick,->,>=stealth]
+\tikzstyle{arrow}=[thick, ->, >=stealth]
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	Logic gate
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\tikzstyle{branch}=[fill, shape=circle, minimum size=2.5pt, inner sep=0pt]
+\tikzstyle{branch}=[fill, shape=circle, minimum size=3pt, inner sep=0pt]
 
 % NOT
 \tikzstyle{not}=[not gate US, draw]
 \tikzstyle{notr}=[not gate US, draw, rotate=-90]
-
 
 % AND 2 input
 \tikzstyle{and2(nn)}=[and gate IEC, draw, logic gate inputs=nn]
@@ -71,7 +74,6 @@
 \tikzstyle{and4(niii)}=[and gate IEC, draw, logic gate inputs=niii]
 \tikzstyle{and4(iiii)}=[and gate IEC, draw, logic gate inputs=iiii]
 
-
 % NAND 2 input
 \tikzstyle{nand2(nn)}=[nand gate IEC, draw, logic gate inputs=nn]
 \tikzstyle{nand2(in)}=[nand gate IEC, draw, logic gate inputs=in]
@@ -105,7 +107,6 @@
 \tikzstyle{nand4(inii)}=[nand gate IEC, draw, logic gate inputs=inii]
 \tikzstyle{nand4(niii)}=[nand gate IEC, draw, logic gate inputs=niii]
 \tikzstyle{nand4(iiii)}=[nand gate IEC, draw, logic gate inputs=iiii]
-
 
 % OR 2 input
 \tikzstyle{or2(nn)}=[or gate IEC, draw, logic gate inputs=nn]
@@ -141,13 +142,13 @@
 \tikzstyle{or4(niii)}=[or gate IEC, draw, logic gate inputs=niii]
 \tikzstyle{or4(iiii)}=[or gate IEC, draw, logic gate inputs=iiii]
 
-
-% NOR
+% NOR 2 input
 \tikzstyle{nor2(nn)}=[nor gate IEC, draw, logic gate inputs=nn]
 \tikzstyle{nor2(in)}=[nor gate IEC, draw, logic gate inputs=in]
 \tikzstyle{nor2(ni)}=[nor gate IEC, draw, logic gate inputs=ni]
 \tikzstyle{nor2(ii)}=[nor gate IEC, draw, logic gate inputs=ii]
 
+% NOR 3 input
 \tikzstyle{nor3(nnn)}=[nor gate IEC, draw, logic gate inputs=nnn]
 \tikzstyle{nor3(inn)}=[nor gate IEC, draw, logic gate inputs=inn]
 \tikzstyle{nor3(nin)}=[nor gate IEC, draw, logic gate inputs=nin]
@@ -157,6 +158,7 @@
 \tikzstyle{nor3(nii)}=[nor gate IEC, draw, logic gate inputs=nii]
 \tikzstyle{nor3(iii)}=[nor gate IEC, draw, logic gate inputs=iii]
 
+% NOR 4 input
 \tikzstyle{nor4(nnnn)}=[nor gate IEC, draw, logic gate inputs=nnnn]
 \tikzstyle{nor4(innn)}=[nor gate IEC, draw, logic gate inputs=innn]
 \tikzstyle{nor4(ninn)}=[nor gate IEC, draw, logic gate inputs=ninn]
@@ -202,7 +204,6 @@
 \draw[rounded corners=3pt, color=#3, opacity=0.8, semithick] ($(#2.north west)+(135:#1)$) rectangle ($(#2.south east)+(-45:#1)$);
 }
 
-
 %internal group
 %#1 - Optional. Space between node and grouping line. Default=0
 %#2 - top left node
@@ -242,8 +243,56 @@
 \draw[rounded corners=3pt, color=#2, opacity=0.8, semithick] ($(cf.west |- 10.north)+(90:#1)$) -| ($(10.west |- rf.north)+(180:#1)$);
 }
 
-%Empty Karnaugh map 4x4
-\newenvironment{Karnaugh}
+% Empty Karnaugh map 2x2, Two Input, quatre
+\newenvironment{KarnaughTwo}
+{
+\begin{tikzpicture}[baseline=(current bounding box.north), scale=0.8]
+\draw (0,0) grid (2,2);
+\draw (0,2) -- node [pos=0.7, above right, anchor=south west] {B} node [pos=0.7, below left, anchor=north east] {A} ++(135:1);
+
+\matrix (mapa) [matrix of nodes,
+        column sep={0.8cm,between origins},
+        row sep={0.8cm,between origins},
+        every node/.style={minimum size=0.3mm},
+        anchor=2.center,
+        ampersand replacement=\&] at (0.5,0.5)
+{
+		\& |(c00)| 0 \& |(c01)| 1 \& |(cf)| \phantom{00} \\
+|(r00)| 0	\& |(0)|  \phantom{0} \& |(1)|  \phantom{0}  \& \\
+|(r01)| 1	\& |(2)|  \phantom{0} \& |(3)|  \phantom{0}  \& \\
+|(rf) | \phantom{00} \&	\&	\& \\
+};
+}
+{
+\end{tikzpicture}
+}
+
+% Empty Karnaugh map 2x4, Three Input, vuit
+\newenvironment{KarnaughThree}
+{
+\begin{tikzpicture}[baseline=(current bounding box.north),scale=0.8]
+\draw (0,0) grid (4,2);
+\draw (0,2) -- node [pos=0.8, above right, anchor=south west] {BC} node [pos=0.7, below left, anchor=north east] {A} ++(135:1);
+
+\matrix (mapa) [matrix of nodes,
+        column sep={0.8cm,between origins},
+        row sep={0.8cm,between origins},
+        every node/.style={minimum size=0.3mm},
+        anchor=4.center,
+        ampersand replacement=\&] at (0.5,0.5)
+{
+	 	\& |(c00)| 00 \& |(c01)| 01 \& |(c11)| 11 \& |(c10)| 10 \& |(cf)| \phantom{00} \\
+|(r00)| 0 	\& |(0)| \phantom{0} \& |(1)| \phantom{0} \& |(3)| \phantom{0} \& |(2)| \phantom{0} \& \\
+|(r01)| 1	\& |(4)| \phantom{0} \& |(5)| \phantom{0} \& |(7)| \phantom{0} \& |(6)| \phantom{0} \& \\
+|(rf) | \phantom{00} \&	\&	\& 	\&	\& \\
+};
+}
+{
+\end{tikzpicture}
+}
+
+% Empty Karnaugh map 4x4, Four Input
+\newenvironment{KarnaughFour}
 {
 \begin{tikzpicture}[baseline=(current bounding box.north), scale=0.8]
 \draw (0,0) grid (4,4);
@@ -256,64 +305,18 @@
         anchor=8.center,
         ampersand replacement=\&] at (0.5,0.5)
 {
-                       \& |(c00)| 00         \& |(c01)| 01         \& |(c11)| 11         \& |(c10)| 10         \& |(cf)| \phantom{00} \\
-|(r00)| 00             \& |(0)|  \phantom{0} \& |(1)|  \phantom{0} \& |(3)|  \phantom{0} \& |(2)|  \phantom{0} \&  \\
-|(r01)| 01             \& |(4)|  \phantom{0} \& |(5)|  \phantom{0} \& |(7)|  \phantom{0} \& |(6)|  \phantom{0} \&  \\
-|(r11)| 11             \& |(12)| \phantom{0} \& |(13)| \phantom{0} \& |(15)| \phantom{0} \& |(14)| \phantom{0} \&  \\
-|(r10)| 10             \& |(8)|  \phantom{0} \& |(9)|  \phantom{0} \& |(11)| \phantom{0} \& |(10)| \phantom{0} \&  \\
-|(rf) | \phantom{00}   \&                    \&                    \&                    \&                    \&                     \\
+		\& |(c00)| 00 \& |(c01)| 01 \& |(c11)| 11 \& |(c10)| 10 \& |(cf)| \phantom{00} \\
+|(r00)| 00	\& |(0)| \phantom{0} \& |(1)| \phantom{0} \& |(3)| \phantom{0} \& |(2)| \phantom{0} \& \\
+|(r01)| 01	\& |(4)| \phantom{0} \& |(5)| \phantom{0} \& |(7)| \phantom{0} \& |(6)| \phantom{0} \& \\
+|(r11)| 11	\& |(12)| \phantom{0} \& |(13)| \phantom{0} \& |(15)| \phantom{0} \& |(14)| \phantom{0} \& \\
+|(r10)| 10	\& |(8)| \phantom{0} \& |(9)| \phantom{0} \& |(11)| \phantom{0} \& |(10)| \phantom{0} \& \\
+|(rf) | \phantom{00} \&	\&	\&	 \&	\& \\
 };
 }
 {
 \end{tikzpicture}
 }
 
-%Empty Karnaugh map 2x4
-\newenvironment{Karnaughvuit}
-{
-\begin{tikzpicture}[baseline=(current bounding box.north),scale=0.8]
-\draw (0,0) grid (4,2);
-\draw (0,2) -- node [pos=0.7,above right,anchor=south west] {BC} node [pos=0.7,below left,anchor=north east] {A} ++(135:1);
-
-\matrix (mapa) [matrix of nodes,
-        column sep={0.8cm,between origins},
-        row sep={0.8cm,between origins},
-        every node/.style={minimum size=0.3mm},
-        anchor=4.center,
-        ampersand replacement=\&] at (0.5,0.5)
-{
-                      \& |(c00)| 00         \& |(c01)| 01         \& |(c11)| 11         \& |(c10)| 10         \& |(cf)| \phantom{00} \\
-|(r00)| 0             \& |(0)|  \phantom{0} \& |(1)|  \phantom{0} \& |(3)|  \phantom{0} \& |(2)|  \phantom{0} \&  \\
-|(r01)| 1             \& |(4)|  \phantom{0} \& |(5)|  \phantom{0} \& |(7)|  \phantom{0} \& |(6)|  \phantom{0} \&  \\
-|(rf) | \phantom{00}  \&                    \&                    \&                    \&                    \&                     \\
-};
-}
-{
-\end{tikzpicture}
-}
-
-%Empty Karnaugh map 2x2
-\newenvironment{Karnaughquatre}
-{
-\begin{tikzpicture}[baseline=(current bounding box.north),scale=0.8]
-\draw (0,0) grid (2,2);
-\draw (0,2) -- node [pos=0.7,above right,anchor=south west] {B} node [pos=0.7,below left,anchor=north east] {A} ++(135:1);
-
-\matrix (mapa) [matrix of nodes,
-        column sep={0.8cm,between origins},
-        row sep={0.8cm,between origins},
-        every node/.style={minimum size=0.3mm},
-        anchor=2.center,
-        ampersand replacement=\&] at (0.5,0.5)
-{
-          \& |(c00)| 0          \& |(c01)| 1  \\
-|(r00)| 0 \& |(0)|  \phantom{0} \& |(1)|  \phantom{0} \\
-|(r01)| 1 \& |(2)|  \phantom{0} \& |(3)|  \phantom{0} \\
-};
-}
-{
-\end{tikzpicture}
-}
 
 %Defines 8 or 16 values (0,1,X)
 \newcommand{\contingut}[1]{
@@ -347,7 +350,7 @@
 % Two input
 \newenvironment{TruthTwo}
 {
-\begin{tikzpicture}[baseline=(current bounding box.north),scale=0.5]
+\begin{tikzpicture}[baseline=(current bounding box.north), scale=0.5, thick]
 \draw (0,0) -- (0,4);
 \draw (0,0) -- (0,-1);
 \draw (-2,3) -- (1,3);
@@ -360,10 +363,10 @@
         ampersand replacement=\&] at (0.5,0.5)
 {
 A \& B  \& F  \\
-0 \& 0 \& |(0)|  \phantom{0} \\
-0 \& 1 \& |(1)|  \phantom{0} \\
-1 \& 0 \& |(2)|  \phantom{0} \\
-1 \& 1 \& |(3)|  \phantom{0} \\
+0 \& 0 \& |(0)| \phantom{0} \\
+0 \& 1 \& |(1)| \phantom{0} \\
+1 \& 0 \& |(2)| \phantom{0} \\
+1 \& 1 \& |(3)| \phantom{0} \\
 };
 }
 {
@@ -373,7 +376,7 @@ A \& B  \& F  \\
 % Three input
 \newenvironment{TruthThree}
 {
-\begin{tikzpicture}[baseline=(current bounding box.north),scale=0.5]
+\begin{tikzpicture}[baseline=(current bounding box.north), scale=0.5, thick]
 \draw (0,0) -- (0,6);
 \draw (0,0) -- (0,-3);
 \draw (-3,5) -- (1,5);
@@ -386,14 +389,14 @@ A \& B  \& F  \\
         ampersand replacement=\&] at (0.5,0.5)
 {
 A \& B \& C \& F  \\
-0 \& 0 \& 0 \& |(0)|  \phantom{0} \\
-0 \& 0 \& 1 \& |(1)|  \phantom{0} \\
-0 \& 1 \& 0 \& |(2)|  \phantom{0} \\
-0 \& 1 \& 1 \& |(3)|  \phantom{0} \\
-1 \& 0 \& 0 \& |(4)|  \phantom{0} \\
-1 \& 0 \& 1 \& |(5)|  \phantom{0} \\
-1 \& 1 \& 0 \& |(6)|  \phantom{0} \\
-1 \& 1 \& 1 \& |(7)|  \phantom{0} \\
+0 \& 0 \& 0 \& |(0)| \phantom{0} \\
+0 \& 0 \& 1 \& |(1)| \phantom{0} \\
+0 \& 1 \& 0 \& |(2)| \phantom{0} \\
+0 \& 1 \& 1 \& |(3)| \phantom{0} \\
+1 \& 0 \& 0 \& |(4)| \phantom{0} \\
+1 \& 0 \& 1 \& |(5)| \phantom{0} \\
+1 \& 1 \& 0 \& |(6)| \phantom{0} \\
+1 \& 1 \& 1 \& |(7)| \phantom{0} \\
 };
 }
 {
@@ -403,7 +406,7 @@ A \& B \& C \& F  \\
 % Four input
 \newenvironment{TruthFour}
 {
-\begin{tikzpicture}[baseline=(current bounding box.north),scale=0.5]
+\begin{tikzpicture}[baseline=(current bounding box.north), scale=0.5, thick]
 \draw (0,0) -- (0,10);
 \draw (0,0) -- (0,-7);
 \draw (-4,9) -- (1,9);
@@ -415,23 +418,23 @@ A \& B \& C \& F  \\
         anchor=8.center,
         ampersand replacement=\&] at (0.5,0.5)
 {
-A \& B \& C \& D \& F  \\
-0 \& 0 \& 0 \& 0 \& |(0)|  \phantom{0} \\
-0 \& 0 \& 0 \& 1 \& |(1)|  \phantom{0} \\
-0 \& 0 \& 1 \& 0 \& |(2)|  \phantom{0} \\
-0 \& 0 \& 1 \& 1 \& |(3)|  \phantom{0} \\
-0 \& 1 \& 0 \& 0 \& |(4)|  \phantom{0} \\
-0 \& 1 \& 0 \& 1 \& |(5)|  \phantom{0} \\
-0 \& 1 \& 1 \& 0 \& |(6)|  \phantom{0} \\
-0 \& 1 \& 1 \& 1 \& |(7)|  \phantom{0} \\
-1 \& 0 \& 0 \& 0 \& |(8)|  \phantom{0} \\
-1 \& 0 \& 0 \& 1 \& |(9)|  \phantom{0} \\
-1 \& 0 \& 1 \& 0 \& |(10)|  \phantom{0} \\
-1 \& 0 \& 1 \& 1 \& |(11)|  \phantom{0} \\
-1 \& 1 \& 0 \& 0 \& |(12)|  \phantom{0} \\
-1 \& 1 \& 0 \& 1 \& |(13)|  \phantom{0} \\
-1 \& 1 \& 1 \& 0 \& |(14)|  \phantom{0} \\
-1 \& 1 \& 1 \& 1 \& |(15)|  \phantom{0} \\
+A \& B \& C \& D \& F \\
+0 \& 0 \& 0 \& 0 \& |(0)| \phantom{0} \\
+0 \& 0 \& 0 \& 1 \& |(1)| \phantom{0} \\
+0 \& 0 \& 1 \& 0 \& |(2)| \phantom{0} \\
+0 \& 0 \& 1 \& 1 \& |(3)| \phantom{0} \\
+0 \& 1 \& 0 \& 0 \& |(4)| \phantom{0} \\
+0 \& 1 \& 0 \& 1 \& |(5)| \phantom{0} \\
+0 \& 1 \& 1 \& 0 \& |(6)| \phantom{0} \\
+0 \& 1 \& 1 \& 1 \& |(7)| \phantom{0} \\
+1 \& 0 \& 0 \& 0 \& |(8)| \phantom{0} \\
+1 \& 0 \& 0 \& 1 \& |(9)| \phantom{0} \\
+1 \& 0 \& 1 \& 0 \& |(10)| \phantom{0} \\
+1 \& 0 \& 1 \& 1 \& |(11)| \phantom{0} \\
+1 \& 1 \& 0 \& 0 \& |(12)| \phantom{0} \\
+1 \& 1 \& 0 \& 1 \& |(13)| \phantom{0} \\
+1 \& 1 \& 1 \& 0 \& |(14)| \phantom{0} \\
+1 \& 1 \& 1 \& 1 \& |(15)| \phantom{0} \\
 };
 }
 {

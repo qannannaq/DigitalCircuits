@@ -1,23 +1,33 @@
-\documentclass[finnish]{standalone}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Karnaugh map 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,english]{standalone}
 
 % Packages
 \usepackage{DigitalCircuits}
 
 \begin{document}
 
-a)
-\begin{Karnaugh}
-	\contingut{0,1,0,0, 1,1,1,1, 0,1,0,0, 1,1,1,1}
-	\implicant{1}{9}{WildStrawberry}
-	\implicant{4}{14}{CadetBlue}
-\end{Karnaugh}
+% 2 Input
+\begin{KarnaughTwo}
+	\contingut{0,1,1,0}
+	\implicantsol{1}{green}
+	\implicantsol{2}{red}
+\end{KarnaughTwo}
 
-b)
-\begin{Karnaugh}
-	\contingut{0,1,0,1, 0,0,0,1, 1,0,1,0, 1,0,1,0}
-	\implicant{1}{3}{RoyalPurple}
-	\implicant[1.5pt]{3}{7}{Thistle}
-	\implicantcostats{12}{10}{NavyBlue}
-\end{Karnaugh}
+% 3 Input
+\begin{KarnaughThree}
+	\contingut{0,1,0,1, 0,1,0,1}
+	\implicant{1}{7}{purple}
+\end{KarnaughThree}
+
+% 4 input
+\begin{KarnaughFour}
+	\contingut{0,1,0,1, 1,0,1,0, 0,1,0,1, 1,0,1,0}
+	\implicantcostats{4}{14}{green}
+	\implicantdaltbaix[1.5pt]{1}{11}{blue}
+	\implicantcantons{orange}
+\end{KarnaughFour}
 
 \end{document}

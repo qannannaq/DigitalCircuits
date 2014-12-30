@@ -1,10 +1,27 @@
-\documentclass[finnish]{standalone}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Truth table
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,english]{standalone}
 
 % Packages
 \usepackage{DigitalCircuits}
 
 \begin{document}
+
+% 2 Input 
+\begin{TruthTwo}
+	\truth{0,1,1,0}
+\end{TruthTwo}
+
+% 3 Input 
+\begin{TruthThree}
+	\truth{0,1,0,1, 1,0,1,0}
+\end{TruthThree}
+
+% 4 Input
 \begin{TruthFour}
-	\truth{0,0,0,1, 0,0,0,1, 1,1,1,0, 1,0,1,1}
+	\truth{0,1,0,1, 1,0,1,0, 0,1,0,1, 1,0,1,0}
 \end{TruthFour}
+
 \end{document}
