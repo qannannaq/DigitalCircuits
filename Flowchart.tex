@@ -2,9 +2,7 @@
 %	Flowchart
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[11pt, english]{standalone}
-
-% Packages
+\documentclass[11pt,english]{standalone}
 \usepackage{DigitalCircuits}
 
 \begin{document}
@@ -17,7 +15,7 @@
 \node (pro2a) [process, below of=dec1, yshift=-0.5cm] {Process 2a};
 \node (pro2b) [process, right of=dec1, xshift=2cm] {Process 2b};
 \node (out1) [io, below of=pro2a] {Output};
-\node (stop) [startend, below of=out1] {Stop};
+\node (stop) [startend, below of=out1] {End};
 
 \draw[arrow] (start) -- (in1);
 \draw[arrow] (in1) -- (pro1);
